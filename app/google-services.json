@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "1257758882",
+    "firebase_url": "https://mahmoudbudair2002-default-rtdb.firebaseio.com",
+    "project_id": "mahmoudbudair2002",
+    "storage_bucket": "mahmoudbudair2002.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1257758882:android:75c86b1f5a2e092309b7fb",
+        "android_client_info": {
+          "package_name": "com.example.firbase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1257758882-1vtphe0iojev67ips3kp8sgom80du626.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYYp8GHI03vPNbnOWjAaOBpeiTcgs5Dfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1257758882-1vtphe0iojev67ips3kp8sgom80du626.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1257758882:android:de43525992b4dd9509b7fb",
+        "android_client_info": {
+          "package_name": "com.example.mystore_firebase2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1257758882-1vtphe0iojev67ips3kp8sgom80du626.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYYp8GHI03vPNbnOWjAaOBpeiTcgs5Dfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1257758882-1vtphe0iojev67ips3kp8sgom80du626.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
