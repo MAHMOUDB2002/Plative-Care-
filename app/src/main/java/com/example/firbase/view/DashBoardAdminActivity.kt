@@ -38,7 +38,7 @@ class DashBoardAdminActivity : BaseActivity()
             when (it.itemId) {
                 R.id.home_fragment -> makeCurrentFragment(HomeAdminFragment())
                 R.id.search_fragment -> makeCurrentFragment(SearchFragment())
-                R.id.chatAdmin_Fragment -> makeCurrentFragment(ChatAdminFragment())
+                R.id.chat_admin_fragment -> makeCurrentFragment(ChatAdminFragment())
                 R.id.profile_fragment -> makeCurrentFragment(ProfileFragment())
 
                 else -> {

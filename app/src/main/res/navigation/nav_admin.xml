@@ -27,7 +27,7 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:id="@+id/chatAdmin_Fragment"
+        android:id="@+id/chat_admin_fragment"
         android:name="com.example.firbase.fragment_admin.ChatAdminFragment"
         android:label="fragment_chat_admin"
         tools:layout="@layout/fragment_chat_admin" />

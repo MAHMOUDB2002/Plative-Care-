@@ -102,7 +102,7 @@
                         android:background="@drawable/theme_button"
                         android:backgroundTint="@color/teal_700"
                         android:gravity="center"
-                        android:visibility="invisible"
+                        android:visibility="gone"
                         android:src="@drawable/subscribe2"
                         android:text="+"
                         android:textColor="@color/white"

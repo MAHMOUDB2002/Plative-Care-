@@ -17,7 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import java.io.Serializable
 
-class SubscribeAdapter(var activity: Activity, var data: ArrayList<Category>) :
+class SubscribeAdapter(var activity: Activity, var data: ArrayList<Category>,var context: Context) :
     RecyclerView.Adapter<SubscribeAdapter.MyViewHolder>(), Serializable {
     class MyViewHolder(var binding: LayoutSubscribeViewBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -45,7 +45,7 @@ class SubscribeAdapter(var activity: Activity, var data: ArrayList<Category>) :
         }
 
         holder.binding.btnUnSubscribe.setOnClickListener {
-            val builder = AlertDialog.Builder(activity)
+            val builder = AlertDialog.Builder(context)
             builder.setTitle("الغاء الاشتراك")
             builder.setMessage("هل انت متأكد من انك تريد الغاء الاشتراك؟؟")
 
@@ -59,7 +59,9 @@ class SubscribeAdapter(var activity: Activity, var data: ArrayList<Category>) :
             builder.setNegativeButton("الغاء") { dialog, which ->
                 dialog.cancel()
             }
+            notifyItemChanged(holder.adapterPosition)
         }
+
 
 
     }

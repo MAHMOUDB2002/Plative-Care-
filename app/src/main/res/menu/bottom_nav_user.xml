@@ -15,7 +15,7 @@
         android:title="الاشتراكات"
         android:icon="@drawable/subscripe"/>
 
-    <item android:id="@+id/Chat_User_Fragment"
+    <item android:id="@+id/chat_user_fragment"
         android:title="مراسلة الاطباء"
         android:icon="@drawable/gender"/>
 

@@ -27,7 +27,7 @@ class DashBoardUserActivity : BaseActivity() {
                 R.id.search_fragment_user -> makeCurrentFragment(SearchFragment())
                 R.id.subsecribe_fragment_user -> makeCurrentFragment(SubsecribeFragment())
                 R.id.profile_fragment_user -> makeCurrentFragment(ProfileFragment())
-                R.id.chat_User_Fragment -> makeCurrentFragment(ChatUserFragment())
+                R.id.chat_user_fragment -> makeCurrentFragment(ChatUserFragment())
 
                 else -> {
 

@@ -26,7 +26,6 @@ class SubsecribeFragment : Fragment() {
 
     private var _binding: FragmentSubsecribeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var databaseReference: DatabaseReference
     lateinit var db: FirebaseFirestore
     lateinit var data: ArrayList<Category>
     //private var progressDialog: ProgressDialog? = null
@@ -104,7 +103,7 @@ class SubsecribeFragment : Fragment() {
 
                     // }
                 }
-                var SubscribeUserAdapter = SubscribeAdapter(requireActivity(), data)
+                var SubscribeUserAdapter = SubscribeAdapter(requireActivity(), data,requireContext())
                 binding.recyclerSub.layoutManager = LinearLayoutManager(requireActivity())
                 binding.recyclerSub.adapter = SubscribeUserAdapter
                 hideDialog()

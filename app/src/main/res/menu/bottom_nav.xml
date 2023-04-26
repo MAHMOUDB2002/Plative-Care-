@@ -11,7 +11,7 @@
         android:title="بحث"
         android:icon="@drawable/search"/>
 
-    <item android:id="@+id/chatAdmin_Fragment"
+    <item android:id="@+id/chat_admin_fragment"
         android:title="التواصل"
         android:icon="@drawable/gender"/>
 

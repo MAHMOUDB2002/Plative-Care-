@@ -27,8 +27,8 @@
         android:label="fragment_subsecribe"
         tools:layout="@layout/fragment_subsecribe" />
     <fragment
-        android:id="@+id/chat_User_Fragment"
+        android:id="@+id/chatFragment_user"
         android:name="com.example.firbase.fragment_user.ChatUserFragment"
-        android:label="fragment_chat__user_"
+        android:label="fragment_chat_user"
         tools:layout="@layout/fragment_chat__user_" />
 </navigation>
