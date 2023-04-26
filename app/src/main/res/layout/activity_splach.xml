@@ -4,25 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_login"
-    tools:context="com.example.myapplication.SplachActivity">
+    android:background="@color/cPrimary"
+    android:layoutDirection="rtl"
+    tools:context=".view.SplachActivity">
 
 
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="300dp"
+        android:layout_marginTop="100dp"
         android:layout_height="300dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="212dp"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sicon" />
+        app:srcCompat="@drawable/undraw_medicine_care" />
 
     <TextView
         android:id="@+id/textView5"
@@ -31,7 +29,7 @@
         android:layout_margin="5dp"
         android:gravity="center"
         android:inputType="text"
-        android:text="Palliative care"
+        android:text="الرعاية الصحية"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"

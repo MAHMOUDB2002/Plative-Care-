@@ -15,7 +15,7 @@
     <color name="login_from_details_light">#C0C0C0</color>
     <color name="login_from_details_medium">#66ffffff</color>
 
-    <color name="cPrimary">#F94C66</color>
+    <color name="cPrimary">#5bbaad</color>
     <color name="cPrimaryDark">#F94C66</color>
     <color name="cAccent">#F94C66</color>
 
@@ -46,6 +46,11 @@
 
     <color name="colorLightGrey">#F1F1F1</color>
 
+    <color name="theme_color">#264BFE</color>
+    <color name="theme_color_light">#92A5FF</color>
+    <color name="theme_color_text_button">#3967D6</color>
+    <color name="edit_text_background">@android:color/white</color>
 
+    <color name="material_dynamic_neutral60">#66ffffff</color>
 
 </resources>

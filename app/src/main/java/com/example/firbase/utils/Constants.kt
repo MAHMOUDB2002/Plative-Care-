@@ -9,7 +9,8 @@ import android.webkit.MimeTypeMap
 object Constants {
 
     const val USERS: String = "User_Care_App"
-
+    const val SUBSCRIBE: String = "Subscribe_Care_User"
+    const val CATEGORY: String = "Category"
 
     const val MYSHOP_PREFERENCES: String = "MyShopPrefs"
     const val LOGGED_IN_USERNAME: String = "logged_in_username"
@@ -39,6 +40,7 @@ object Constants {
     const val GENDER: String = "gender"
     const val IMAGE: String = "image"
     const val USERTYPE: String = "userType"
+    const val DESCRIPTION: String = "Description"
 
 
     const val PROFILE_COMPLETED: String = "profileCompleted"

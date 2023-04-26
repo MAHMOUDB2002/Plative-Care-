@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
 
     <item android:id="@+id/home_fragment"
-        android:title="Home"
+        android:title="الرئيسية"
         android:icon="@drawable/home"/>
 
     <item android:id="@+id/search_fragment"
-        android:title="Search"
+        android:title="بحث"
         android:icon="@drawable/search"/>
 
-    <item android:id="@+id/subsecribe_fragment"
-        android:title="subsecribe"
-        android:icon="@drawable/orders"/>
+    <item android:id="@+id/chatAdmin_Fragment"
+        android:title="التواصل"
+        android:icon="@drawable/gender"/>
 
     <item android:id="@+id/profile_fragment"
-        android:title="Profile"
-        android:icon="@drawable/profile"/>
+        android:title="الملف الشخصي"
+        android:icon="@drawable/profilee"/>
 </menu>

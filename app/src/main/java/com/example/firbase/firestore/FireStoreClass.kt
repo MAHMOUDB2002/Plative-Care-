@@ -7,10 +7,9 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
-import com.example.firbase.LoginActivity
-import com.example.firbase.RegisterActivity
-import com.example.firbase.SettingsActivity
-import com.example.firbase.UserProfileActivity
+import com.example.firbase.view.LoginActivity
+import com.example.firbase.view.RegisterActivity
+import com.example.firbase.view.UserProfileActivity
 import com.example.firbase.model.User
 import com.example.firbase.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -76,23 +75,14 @@ class FireStoreClass {
                         is LoginActivity -> {
                             activity.userLoggedInSuccess(user)
                         }
-                        is SettingsActivity -> {
-                            activity.userDetailsSuccess(user)
-                        }
                     }
                 }
 
             }
-
-
             .addOnFailureListener {
 
                 when (activity) {
                     is LoginActivity -> {
-                        activity.hideProgressDialog()
-                    }
-
-                    is SettingsActivity -> {
                         activity.hideProgressDialog()
                     }
                 }

@@ -1,62 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubsecribeFragment">
+    android:layoutDirection="rtl"
+    tools:context=".fragment_user.SubsecribeFragment">
 
-    <!-- Edit Category -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:id="@+id/toolbar_settings_activity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp"
-        tools:context=".MainActivity">
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Add Category -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cPrimary"
+            android:gravity="center"
+            android:text="الأشتراكات"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        <!-- photo Category -->
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerSub"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:listitem="@layout/layout_subscribe_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_settings_activity" />
 
-            android:id="@+id/btnedit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="161dp"
-            android:clickable="true"
-            android:src="@drawable/edit"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnaddd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="25dp"
-            android:backgroundTint="@color/cAccent"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/add"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnaddcategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            android:layout_marginEnd="1dp"
-            android:clickable="true"
-            android:src="@drawable/add"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@+id/btnedit"
-            app:layout_constraintTop_toBottomOf="@+id/btnedit" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
