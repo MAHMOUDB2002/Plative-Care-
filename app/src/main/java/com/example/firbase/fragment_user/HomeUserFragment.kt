@@ -1,6 +1,7 @@
 package com.example.firbase.fragment_user
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -50,19 +51,22 @@ class HomeUserFragment : Fragment() {
         showDialog("جار التحميل ...")
         getAllCategory()
 
-                val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-//                findNavController().navigate(R.id.action_fourthFragment_to_secondFragment)
-               requireActivity().finish()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+//                val callback = object : OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+////                findNavController().navigate(R.id.action_fourthFragment_to_secondFragment)
+//               requireActivity().finish()
+//            }
+//        }
+//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
     }
 
 
 
     fun getAllCategory(){
+        val sharedP =requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        val idSubscribeCategory = sharedP.getString("idSubscribeCategory", "0").toString()
+
         db.collection("Category")
             .get()
             .addOnSuccessListener {

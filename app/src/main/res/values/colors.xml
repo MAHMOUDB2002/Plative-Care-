@@ -53,4 +53,17 @@
 
     <color name="material_dynamic_neutral60">#66ffffff</color>
 
+
+    <color name="Primary">#009688</color>
+    <color name="Primary_dark">#0F433E</color>
+
+    <color name="Primaryy">#1C2E46</color>
+    <color name="Primaryy_dark">#142232</color>
+    <color name="Primary_text">#212121</color>
+    <color name="Secondary_text">#757575</color>
+    <color name="input_background">#ECECEC</color>
+    <color name="icon_background">#20FFFFFF</color>
+    <color name="error">#B00020</color>
+    <color name="receved_message_background">#17504A</color>
+
 </resources>

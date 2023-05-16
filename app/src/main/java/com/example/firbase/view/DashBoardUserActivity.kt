@@ -5,8 +5,9 @@ import androidx.fragment.app.Fragment
 import com.example.firbase.fragment_user.ChatUserFragment
 import com.example.firbase.R
 import com.example.firbase.databinding.ActivityDashBoardUserBinding
-import com.example.firbase.fragment_admin.ProfileFragment
+import com.example.firbase.fragment_admin.ProfileAdminFragment
 import com.example.firbase.fragment_user.HomeUserFragment
+import com.example.firbase.fragment_user.ProfileUserFragment
 import com.example.firbase.fragment_user.SearchFragment
 import com.example.firbase.fragment_user.SubsecribeFragment
 import com.example.firbase.utils.BaseActivity
@@ -26,7 +27,7 @@ class DashBoardUserActivity : BaseActivity() {
                 R.id.home_fragment_user -> makeCurrentFragment(HomeUserFragment())
                 R.id.search_fragment_user -> makeCurrentFragment(SearchFragment())
                 R.id.subsecribe_fragment_user -> makeCurrentFragment(SubsecribeFragment())
-                R.id.profile_fragment_user -> makeCurrentFragment(ProfileFragment())
+                R.id.profile_fragment_user -> makeCurrentFragment(ProfileUserFragment())
                 R.id.chat_user_fragment -> makeCurrentFragment(ChatUserFragment())
 
                 else -> {

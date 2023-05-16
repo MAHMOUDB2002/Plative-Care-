@@ -86,7 +86,7 @@
                         android:id="@+id/btnSubscribe"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:background="@drawable/theme_button"
+                        android:background="@drawable/search_button"
                         android:backgroundTint="@color/teal_700"
                         android:gravity="center"
                         android:src="@drawable/subscribe1"
@@ -94,20 +94,20 @@
                         android:textColor="@color/white"
                         android:textSize="30sp"
                         tools:ignore="MissingConstraints" />
+<!--                    android:background="@drawable/theme_button"-->
 
-                    <ImageButton
-                        android:id="@+id/btnUnSubscribe"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:background="@drawable/theme_button"
-                        android:backgroundTint="@color/teal_700"
-                        android:gravity="center"
-                        android:visibility="gone"
-                        android:src="@drawable/subscribe2"
-                        android:text="+"
-                        android:textColor="@color/white"
-                        android:textSize="30sp"
-                        tools:ignore="MissingConstraints" />
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/btnUnSubscribe"-->
+<!--                        android:layout_width="35dp"-->
+<!--                        android:layout_height="35dp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:visibility="gone"-->
+<!--                        android:src="@drawable/subscribe2"-->
+<!--                        android:text="+"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="30sp"-->
+<!--                        tools:ignore="MissingConstraints" />-->
+<!--                    android:background="@drawable/theme_button"-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -127,7 +127,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="6dp"
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal">
 
@@ -137,7 +137,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="5dp"
-                    android:layout_marginLeft="109dp"
                     android:layoutDirection="rtl"
                     android:text="أسم الدكتور"
                     android:textStyle="bold" />

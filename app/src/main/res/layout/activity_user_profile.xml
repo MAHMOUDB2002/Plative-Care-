@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layoutDirection="rtl"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
     tools:context=".view.UserProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -56,12 +56,12 @@
                     android:id="@+id/iv_user_photo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white"
                     android:layout_margin="10dp"
-                    app:shapeAppearanceOverlay="@style/Circular"
+                    android:background="@color/white"
                     android:contentDescription="image"
                     android:scaleType="fitXY"
-                    android:src="@drawable/userplaceh" />
+                    android:src="@drawable/userplaceh"
+                    app:shapeAppearanceOverlay="@style/Circular" />
 
 
             </FrameLayout>
@@ -84,6 +84,9 @@
                 android:id="@+id/full_namee"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/edit_text_background"
                 android:hint="الأسم بالكامل"
                 android:inputType="text"
@@ -91,12 +94,9 @@
                 android:textColor="@color/colorSeconderyText"
                 android:textColorHint="@color/login_from_details_light"
                 android:textSize="18sp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fl_user_image"/>
+                app:layout_constraintTop_toBottomOf="@id/fl_user_image" />
 
             <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
@@ -119,6 +119,9 @@
                 android:id="@+id/birthOfDatee"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/edit_text_background"
                 android:hint="تاريخ الميلاد"
                 android:inputType="text"
@@ -126,13 +129,9 @@
                 android:textColor="@color/colorSeconderyText"
                 android:textColorHint="@color/login_from_details_light"
                 android:textSize="18sp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/full_namee"
-                />
+                app:layout_constraintTop_toBottomOf="@id/full_namee" />
 
 
             <!--        </com.google.android.material.textfield.TextInputLayout>-->
@@ -156,6 +155,9 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/edit_text_background"
                 android:hint="البريد الاكتروني"
                 android:inputType="textEmailAddress"
@@ -163,12 +165,9 @@
                 android:textColor="@color/colorSeconderyText"
                 android:textColorHint="@color/login_from_details_light"
                 android:textSize="18sp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/birthOfDatee"/>
+                app:layout_constraintTop_toBottomOf="@id/birthOfDatee" />
 
 
             <!--        </com.google.android.material.textfield.TextInputLayout>-->
@@ -197,12 +196,12 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/edit_text_background"
+                android:hint="رقم الهاتف"
                 android:inputType="number"
                 android:padding="16dp"
-                android:hint="رقم الهاتف"
-                android:textSize="18sp"
                 android:textColor="@color/colorSeconderyText"
                 android:textColorHint="@color/login_from_details_light"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_email" />
@@ -218,13 +217,12 @@
                 android:hint="العنوان"
                 android:inputType="text"
                 android:padding="16dp"
-                android:textSize="18sp"
                 android:textColor="@color/colorSeconderyText"
                 android:textColorHint="@color/login_from_details_light"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_mobile_number" />
-
 
 
             <!--                <com.example.shop.utils.MSPTextView-->
@@ -244,6 +242,25 @@
             <!--    </com.google.android.material.textfield.TextInputLayout>-->
 
 
+            <EditText
+                android:id="@+id/txtDoctorSpecialization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="التخصص"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/colorSeconderyText"
+                android:textColorHint="@color/login_from_details_light"
+                android:textSize="18sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_Address" />
+
             <RadioGroup
                 android:id="@+id/rg_gender"
                 android:layout_width="match_parent"
@@ -255,7 +272,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/rg_UserType"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_Address">
+                app:layout_constraintTop_toBottomOf="@id/txtDoctorSpecialization">
 
                 <RadioButton
                     android:id="@+id/rb_male"
@@ -332,7 +349,6 @@
 
             </RadioGroup>
 
-
             <Button
                 android:id="@+id/btn_save"
                 android:layout_width="match_parent"
@@ -356,8 +372,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/rg_UserType" />
 
 
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout></ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

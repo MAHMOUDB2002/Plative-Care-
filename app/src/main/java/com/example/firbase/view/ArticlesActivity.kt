@@ -23,12 +23,10 @@ import kotlinx.android.synthetic.main.dialog_progress.*
 
 class ArticlesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityArticlesBinding
-    private lateinit var firebaseAuth: FirebaseAuth
     lateinit var data:ArrayList<Article>
     lateinit var db: FirebaseFirestore
     //private var progressDialog: ProgressDialog? = null
     private lateinit var progressDialog: Dialog
-
     lateinit var id: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,25 +42,6 @@ class ArticlesActivity : AppCompatActivity() {
 
 
 
-
-        FirebaseFirestore.getInstance().collection(Constants.USERS)
-            .document(getCurrentUserID())
-            .get()
-            .addOnSuccessListener { document ->
-
-                val user = document.toObject(User::class.java)!!
-
-                if (user.userType == "Doctor") {
-                    binding.btnAddArticle.visibility = View.VISIBLE
-                } else if (user.userType == "Sick") {
-                    binding.btnAddArticle.visibility = View.INVISIBLE
-                }
-                else {
-                    binding.btnAddArticle.visibility = View.INVISIBLE
-
-                }
-
-            }
         binding.btnAddArticle.setOnClickListener {
           // makeCurrentFragment(AddArticleFragment())
             val i= Intent(this, AddArticleActivity::class.java)
@@ -133,6 +112,24 @@ class ArticlesActivity : AppCompatActivity() {
 
 
 
+    fun checkUserType(){
+        FirebaseFirestore.getInstance().collection(Constants.USERS)
+            .document(getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+
+                val user = document.toObject(User::class.java)!!
+
+                if (user.userType == "Doctor") {
+                    binding.btnAddArticle.visibility = View.VISIBLE
+                } else if (user.userType == "Sick") {
+                    binding.btnAddArticle.visibility = View.INVISIBLE
+                }
+                else {
+                    binding.btnAddArticle.visibility = View.INVISIBLE
+                }
+            }
+    }
     fun getCurrentUserID(): String {
 
         val currentUser = FirebaseAuth.getInstance().currentUser

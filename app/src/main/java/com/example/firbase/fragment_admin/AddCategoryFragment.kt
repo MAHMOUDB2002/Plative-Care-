@@ -25,7 +25,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.dialog_progress.*
-import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile_admin.*
 import java.io.ByteArrayOutputStream
 
 class AddCategoryFragment : Fragment() {

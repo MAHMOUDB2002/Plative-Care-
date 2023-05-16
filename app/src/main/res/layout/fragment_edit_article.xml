@@ -48,7 +48,6 @@
         android:id="@+id/btnAdd"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:background="@drawable/theme_button"
         android:text="حفظ التغيرات"
         android:textColor="@color/white"
         android:layout_marginBottom="10dp"

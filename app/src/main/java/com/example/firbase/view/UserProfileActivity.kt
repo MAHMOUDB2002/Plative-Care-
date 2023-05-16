@@ -1,6 +1,7 @@
 package com.example.firbase.view
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -19,8 +20,10 @@ import com.example.firbase.utils.GlideLoader
 import com.example.shop.firestore.FireStoreClass
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_register.txtBirthOfDate
 import kotlinx.android.synthetic.main.activity_user_profile.*
 import java.io.IOException
+import java.util.Calendar
 
 class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
@@ -28,6 +31,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private var mSelectedImageFileUri: Uri? = null
     private var mUserProfileImageUri: String = ""
     private val mFireStore = FirebaseFirestore.getInstance()
+    var job = 99
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,34 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         if (intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
             //Get the user dwtails from intent as a ParcelableExtra
             mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
+        }
+
+        birthOfDatee.setOnClickListener {
+            val currentDate = Calendar.getInstance() //  عشان يعرض التاريخ الي موجو بالايميليتور
+            val day = currentDate.get(Calendar.DAY_OF_MONTH)
+            val month = currentDate.get(Calendar.MONTH)
+            val year = currentDate.get(Calendar.YEAR)
+            val picker = DatePickerDialog(
+                this,
+                DatePickerDialog.OnDateSetListener { datePicker, y, m, d ->
+                    birthOfDatee.setText(" $y / ${m + 1} / $d ")
+                    //  m +1  عشان احل مشكلة اللي بينقص شهر عشان بيعد من الصفر
+                },
+                year,
+                month,
+                day
+            ) // يوم شهر سنة
+            picker.show() // عشان اظهرها
+        }
+
+        rg_UserType.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId == R.id.rb_Sick) {
+                hideTextField()
+            }
+
+            if (checkedId == R.id.rb_Doctor) {
+                showTextField()
+            }
         }
 
         full_namee.setText(mUserDetails.fullName)
@@ -84,11 +116,23 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         et_email.isEnabled = false
         et_email.setText(mUserDetails.email)
 
+        et_email.setText(mUserDetails.email)
+
+        txtDoctorSpecialization.setText(mUserDetails.doctorSpecialization)
 
 
         iv_user_photo.setOnClickListener(this@UserProfileActivity)
         btn_save.setOnClickListener(this@UserProfileActivity)
 
+    }
+
+    fun hideTextField() {
+        txtDoctorSpecialization.visibility = View.GONE
+        txtDoctorSpecialization.text.clear()
+    }
+
+    fun showTextField() {
+        txtDoctorSpecialization.visibility = View.VISIBLE
     }
 
     private fun setUpActionBar() {
@@ -204,6 +248,9 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
         val address = til_Address.text.toString().trim { it <= ' ' }
 
+        val doctorJob = txtDoctorSpecialization.text.toString().trim { it <= ' ' }
+
+
         val gender = if (rb_male.isChecked) {
             Constants.MALE
         } else {
@@ -227,6 +274,10 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         if (address.isNotEmpty() && address != mUserDetails.address) {
             userHashMap[Constants.ADDRESS] = address
             //.toLong()
+        }
+
+        if (doctorJob.isNotEmpty() && doctorJob != mUserDetails.doctorSpecialization) {
+            userHashMap[Constants.DOCTORJOB] = doctorJob
         }
 
         if (gender.isNotEmpty() && gender != mUserDetails.gender) {
@@ -314,6 +365,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 showErrorSnackBar("من فضلك اضف رقم الهاتف", true)
                 false
             }
+
             else -> {
                 true
             }

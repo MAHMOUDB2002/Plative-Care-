@@ -5,18 +5,19 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class User(
- val id : String = "",
- val fullName : String = "",
+ var id : String = "",
+ var fullName : String = "",
  val birthOfDate : String = "",
  val mobilePhone : String = "",
- val email : String = "",
- val image : String = "",
+ var email : String = "",
+ var image : String = "",
  val profileCompleted : Int = 0,
  val address : String = "",
+ val doctorSpecialization : String = "",
  val gender : String = "",
  val userType : String = "",
 
-) : Parcelable
+ ) : Parcelable
 
 // val userType : String = "",
 

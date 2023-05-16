@@ -2,11 +2,12 @@ package com.example.firbase.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.firbase.fragment_admin.NotificationsFragment
 import com.example.firbase.fragment_admin.ChatAdminFragment
 import com.example.firbase.R
 import com.example.firbase.databinding.ActivityDashBoardAdminBinding
 import com.example.firbase.fragment_admin.HomeAdminFragment
-import com.example.firbase.fragment_admin.ProfileFragment
+import com.example.firbase.fragment_admin.ProfileAdminFragment
 import com.example.firbase.fragment_user.SearchFragment
 import com.example.firbase.utils.BaseActivity
 
@@ -39,7 +40,8 @@ class DashBoardAdminActivity : BaseActivity()
                 R.id.home_fragment -> makeCurrentFragment(HomeAdminFragment())
                 R.id.search_fragment -> makeCurrentFragment(SearchFragment())
                 R.id.chat_admin_fragment -> makeCurrentFragment(ChatAdminFragment())
-                R.id.profile_fragment -> makeCurrentFragment(ProfileFragment())
+                R.id.profile_fragment -> makeCurrentFragment(ProfileAdminFragment())
+                R.id.notifications_admin_fragment -> makeCurrentFragment(NotificationsFragment())
 
                 else -> {
 
@@ -57,9 +59,9 @@ class DashBoardAdminActivity : BaseActivity()
         }
     }
 
-//    override fun onBackPressed() {
-//        doubleBackToExit()
-//    }
+    override fun onBackPressed() {
+        doubleBackToExit()
+    }
 
 
 }

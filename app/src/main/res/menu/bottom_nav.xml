@@ -15,6 +15,11 @@
         android:title="التواصل"
         android:icon="@drawable/gender"/>
 
+    <item android:id="@+id/notifications_admin_fragment"
+        android:title="الاشعارات"
+        android:icon="@drawable/list"/>
+
+
     <item android:id="@+id/profile_fragment"
         android:title="الملف الشخصي"
         android:icon="@drawable/profilee"/>

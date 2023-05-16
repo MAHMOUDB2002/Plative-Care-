@@ -90,7 +90,7 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/btnUnSubscribe"
+                android:id="@+id/btnUnSub"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginLeft="10dp"
@@ -139,6 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="أسم الدكتور"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="165dp"
                     android:layoutDirection="rtl"

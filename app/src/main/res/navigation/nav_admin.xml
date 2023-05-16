@@ -9,7 +9,7 @@
         android:id="@+id/home_fragment"
         android:name="com.example.firbase.fragment_user.HomeUserFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home_user" >
+        tools:layout="@layout/fragment_home_admin" >
 <!--        <action-->
 <!--            android:id="@+id/action_homeFragment_to_cartFragment"-->
 <!--            app:destination="@id/subsecribeFragment" />-->
@@ -23,12 +23,17 @@
 
     <fragment
         android:id="@+id/profile_fragment"
-        android:name="com.example.firbase.fragment_admin.ProfileFragment"
+        android:name="com.example.firbase.fragment_admin.ProfileAdminFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile_admin" />
     <fragment
         android:id="@+id/chat_admin_fragment"
         android:name="com.example.firbase.fragment_admin.ChatAdminFragment"
         android:label="fragment_chat_admin"
         tools:layout="@layout/fragment_chat_admin" />
+    <fragment
+        android:id="@+id/notifications_fragment"
+        android:name="com.example.firbase.fragment_admin.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
 </navigation>

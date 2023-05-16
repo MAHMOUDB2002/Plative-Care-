@@ -1,5 +1,6 @@
 package com.example.firbase.fragment_user
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -15,6 +16,8 @@ import com.example.firbase.adapter.SubscribeAdapter
 import com.example.firbase.databinding.FragmentSubsecribeBinding
 import com.example.firbase.model.Category
 import com.example.firbase.utils.Constants
+import com.example.firbase.view.DashBoardAdminActivity
+import com.example.firbase.view.DashBoardUserActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -30,6 +33,7 @@ class SubsecribeFragment : Fragment() {
     lateinit var data: ArrayList<Category>
     //private var progressDialog: ProgressDialog? = null
     private lateinit var progressDialog: Dialog
+    lateinit var d: Activity
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,24 +47,6 @@ class SubsecribeFragment : Fragment() {
     ): View? {
         _binding = FragmentSubsecribeBinding.inflate(inflater, container, false)
 
-        // قم بتحميل قائمة العناصر من مصدر البيانات الخاص بك
-
-        // الحصول على مثيل SharedPreferences
-//        val sharedPreferences =
-//            requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-//        // الحصول على مجموعة معرف العناصر المفضلة
-//        val favourites =
-//            sharedPreferences.getStringSet("favourites", mutableSetOf()) ?: mutableSetOf()
-//
-//        // تحديث علامة isFavourite بناءً على القيمة الحالية لـ favourites
-//        items.forEach { item ->
-//            item.isSubscribe = favourites.contains(item.id.toString())
-//        }
-//
-//        // إنشاء وتعيين محول RecyclerView
-//        val adapter = CategoryUserAdapter(requireActivity(), items as ArrayList<Category>)
-//        binding.recyclerSub.adapter = adapter
-
         return binding.root
 
     }
@@ -69,6 +55,7 @@ class SubsecribeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         db = Firebase.firestore
         data = ArrayList()
+        d = (activity as DashBoardUserActivity)
         showDialog("جار التحميل ...")
         getSubscribeCategory()
     }
@@ -103,9 +90,9 @@ class SubsecribeFragment : Fragment() {
 
                     // }
                 }
-                var SubscribeUserAdapter = SubscribeAdapter(requireActivity(), data,requireContext())
+                var subscribeUserAdapter = SubscribeAdapter(requireActivity(), data)
                 binding.recyclerSub.layoutManager = LinearLayoutManager(requireActivity())
-                binding.recyclerSub.adapter = SubscribeUserAdapter
+                binding.recyclerSub.adapter = subscribeUserAdapter
                 hideDialog()
             }
             .addOnFailureListener {
@@ -132,6 +119,24 @@ class SubsecribeFragment : Fragment() {
     }
 
 }
+
+// قم بتحميل قائمة العناصر من مصدر البيانات الخاص بك
+
+// الحصول على مثيل SharedPreferences
+//        val sharedPreferences =
+//            requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+//        // الحصول على مجموعة معرف العناصر المفضلة
+//        val favourites =
+//            sharedPreferences.getStringSet("favourites", mutableSetOf()) ?: mutableSetOf()
+//
+//        // تحديث علامة isFavourite بناءً على القيمة الحالية لـ favourites
+//        items.forEach { item ->
+//            item.isSubscribe = favourites.contains(item.id.toString())
+//        }
+//
+//        // إنشاء وتعيين محول RecyclerView
+//        val adapter = CategoryUserAdapter(requireActivity(), items as ArrayList<Category>)
+//        binding.recyclerSub.adapter = adapter
 
 //        root.btnaddd.setOnClickListener {
 //            onAddButtonClicked()

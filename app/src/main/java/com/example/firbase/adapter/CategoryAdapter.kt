@@ -5,9 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.firbase.databinding.LayoutViewAdminBinding
 import com.example.firbase.view.ArticlesActivity
 import com.example.firbase.view.DashBoardAdminActivity
-import com.example.firbase.databinding.LayoutViewBinding
 import com.example.firbase.fragment_admin.EditCategoryFragment
 import com.example.firbase.model.Category
 import com.squareup.picasso.Picasso
@@ -15,12 +15,12 @@ import java.io.Serializable
 
 class CategoryAdapter(var activity: Activity, var data: ArrayList<Category>):
     RecyclerView.Adapter<CategoryAdapter.MyViewHolder>(), Serializable {
-    class MyViewHolder(var binding: LayoutViewBinding) :
+    class MyViewHolder(var binding: LayoutViewAdminBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =
-            LayoutViewBinding.inflate(activity.layoutInflater, parent, false)
+            LayoutViewAdminBinding.inflate(activity.layoutInflater, parent, false)
         return MyViewHolder(binding)
     }
 

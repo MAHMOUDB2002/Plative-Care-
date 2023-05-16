@@ -62,6 +62,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             val i = Intent(this@LoginActivity, UserProfileActivity::class.java)
             i.putExtra(Constants.EXTRA_USER_DETAILS, user) // for adding data
             startActivity(i)
+            finish()
         } else {
             FirebaseFirestore.getInstance().collection(Constants.USERS)
                 .document(getCurrentUserID())
@@ -88,6 +89,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                 DashBoardAdminActivity::class.java
                             )
                         )
+                        finish()
                     } else if (user.userType == "Sick") {
                         startActivity(
                             Intent(
@@ -95,6 +97,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                 DashBoardUserActivity::class.java
                             )
                         )
+                        finish()
                     }
                 }
 
@@ -109,9 +112,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     val f = Intent(this, ForgetPasswordActivity::class.java)
                     startActivity(f)
                 }
+
                 R.id.btnlog -> {
                     validateLoginDetails()
                 }
+
                 R.id.btnReg -> {
                     val i = Intent(this, RegisterActivity::class.java)
                     startActivity(i)

@@ -1,4 +1,4 @@
-package com.example.firbase.fragment_admin
+package com.example.firbase.fragment_user
 
 import android.app.Activity
 import android.app.Dialog
@@ -18,7 +18,7 @@ import androidx.navigation.Navigation.findNavController
 import com.example.firbase.view.LoginActivity
 import com.example.firbase.R
 import com.example.firbase.view.UserProfileActivity
-import com.example.firbase.databinding.FragmentProfileBinding
+import com.example.firbase.databinding.FragmentProfileUserBinding
 import com.example.firbase.model.User
 import com.example.firbase.utils.Constants
 import com.example.firbase.utils.GlideLoader
@@ -27,25 +27,24 @@ import com.example.firbase.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.dialog_progress.*
-import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile_user.iv_user_photoo
 
 
-class ProfileFragment : Fragment()
+class ProfileUserFragment : Fragment()
 //, TextWatcher
 {
-    private var _binding: FragmentProfileBinding? = null
+    private var _binding: FragmentProfileUserBinding? = null
     private val binding get() = _binding!!
     private lateinit var mUserDetails: User
     private lateinit var mProgressDialog: Dialog
     private val mFireStore = FirebaseFirestore.getInstance()
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentProfileUserBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -55,6 +54,8 @@ class ProfileFragment : Fragment()
             val i = Intent(requireContext(), UserProfileActivity::class.java)
             i.putExtra(Constants.EXTRA_USER_DETAILS, mUserDetails)
             startActivity(i)
+            requireActivity().finish()
+
 
         }
 

@@ -13,9 +13,9 @@
         tools:layout="@layout/fragment_home_user" />
     <fragment
         android:id="@+id/profileFragment_user"
-        android:name="com.example.firbase.fragment_admin.ProfileFragment"
+        android:name="com.example.firbase.fragment_admin.ProfileAdminFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile_user" />
     <fragment
         android:id="@+id/searchFragment_user"
         android:name="com.example.firbase.fragment_user.SearchFragment"

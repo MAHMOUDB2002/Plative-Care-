@@ -53,13 +53,13 @@ class HomeAdminFragment : Fragment() {
             (d as DashBoardAdminActivity).makeCurrentFragment(AddCategoryFragment())
         }
 
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-//                findNavController().navigate(R.id.action_fourthFragment_to_secondFragment)
-               d.finish()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+//        val callback = object : OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+////                findNavController().navigate(R.id.action_fourthFragment_to_secondFragment)
+//               d.finish()
+//            }
+//        }
+//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
 
@@ -76,7 +76,7 @@ class HomeAdminFragment : Fragment() {
                     val img = document.getString("img")
                     val imgName = document.getString("imgName")
 
-                    val category= Category(id,name!!,img!!,imgName!!,description!!,doctorName!!,false)
+                    val category= Category(id,name!!,img!!,imgName!!,description!!,doctorName!!,)
                     data.add(category)
                 }
                 var categoryAdapter = CategoryAdapter(d, data)

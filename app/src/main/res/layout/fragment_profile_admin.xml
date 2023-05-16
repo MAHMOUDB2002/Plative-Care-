@@ -8,7 +8,7 @@
     android:gravity="center"
     android:layoutDirection="rtl"
     android:orientation="vertical"
-    tools:context=".fragment_admin.ProfileFragment">
+    tools:context=".fragment_admin.ProfileAdminFragment">
 
 
     <FrameLayout
@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/fl_user_image"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:drawableEnd="@drawable/ic_baseline_person_24"
                 android:drawablePadding="15dp"
                 android:drawableTint="@color/cPrimary"

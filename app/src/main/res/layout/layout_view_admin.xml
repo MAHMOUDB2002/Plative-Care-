@@ -115,10 +115,10 @@
                 android:background="@color/login_from_details_light"/>
 
             <RelativeLayout
-                android:layout_width="365dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -138,7 +138,6 @@
                     android:layout_width="90dp"
                     android:text="تعديل"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="16dp"
                     android:textColor="@color/white"
                     android:layout_marginRight="10dp"
                     android:backgroundTint="@color/teal_700"

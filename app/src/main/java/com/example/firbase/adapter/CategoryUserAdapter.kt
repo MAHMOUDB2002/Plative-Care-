@@ -14,12 +14,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.firbase.R
 import com.example.firbase.view.ArticlesActivity
 import com.example.firbase.view.DashBoardAdminActivity
-import com.example.firbase.databinding.LayoutViewBinding
 import com.example.firbase.databinding.LayoutViewUserBinding
 import com.example.firbase.fragment_admin.EditCategoryFragment
 import com.example.firbase.model.Category
 import com.example.firbase.model.User
 import com.example.firbase.utils.Constants
+import com.example.firbase.view.ArticlesActivityUser
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import java.io.Serializable
@@ -27,8 +28,7 @@ import java.io.Serializable
 class CategoryUserAdapter(var activity: Activity, var data: ArrayList<Category>) :
     RecyclerView.Adapter<CategoryUserAdapter.MyViewHolder>(), Serializable {
     private val mFireStore = FirebaseFirestore.getInstance()
-    lateinit var data2: ArrayList<User>
-    var isSubsecribe2 = 0
+    private lateinit var mUserDetails: User
 
     class MyViewHolder(var binding: LayoutViewUserBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -45,118 +45,171 @@ class CategoryUserAdapter(var activity: Activity, var data: ArrayList<Category>)
         holder.binding.tvName.setText(data[position].name)
         holder.binding.tvDescription.setText(data[position].description)
         holder.binding.doctorName.setText(data[position].doctorName)
+//        holder.binding.btnSubscribe.setImageResource(data[position].isSubscribe)
 
         holder.binding.cardView.setOnClickListener {
-            val sharedP=activity.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-            val edit=sharedP!!.edit()
-            edit.putString("idCategory",data[position].id)
+            val sharedP = activity.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+            val edit = sharedP!!.edit()
+            edit.putString("idCategory", data[position].id)
             edit.apply()
-            val i = Intent(activity, ArticlesActivity::class.java)
+            val i = Intent(activity, ArticlesActivityUser::class.java)
             activity.startActivity(i)
         }
 
-        holder.binding.btnSubscribe.setOnClickListener {
-            if (isSubsecribe2 == 0) {
-                val sharedP =
-                activity.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-            val edit = sharedP!!.edit()
-            edit.putString("idSubscribeCategory", data[position].id)
-            edit.apply()
-                val subsc = data[position]
-                val isSubscribe = true.also { subsc.isSubscribe = it }
-                isSubsecribe2 = 1
-//              var subsc2 = data2[position]
+        val subsc = data[position]
+        if (subsc.isSubscribe == 0) {
+            holder.binding.btnSubscribe.setOnClickListener {
+                val isSubscribe = 1.also { subsc.isSubscribe = it }
+                if (data[position].isSubscribe == R.drawable.subscribe1 || data[position].isSubscribe == 1) {
+                    val sharedP =
+                        activity.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+                    val edit = sharedP!!.edit()
+                    edit.putString("idSubscribeCategory", data[position].isSubscribe.toString())
+                    edit.apply()
+                    val catHashMap = HashMap<String, Any>()
+                    val img = subsc.imgName
+                    val img2 = subsc.img
+                    val name = subsc.name
+                    val desc = subsc.description
+                    val docName = subsc.doctorName
+                    mFireStore.collection(Constants.USERS)
+                        .document(getCurrentUserID())
+                        .get()
+                        .addOnSuccessListener { document ->
+                            if (document != null) {
+                                val user = document.toObject(User::class.java)!!
+                                val userName =user.fullName
+//                                val userName = "${user.fullName} تم الأشتراك بواسطة :"
 
-                val catHashMap = HashMap<String, Any>()
-                val img = subsc.imgName
-                val img2 = subsc.img
-                val name = subsc.name
-                val desc = subsc.description
-                val docName = subsc.doctorName
-                //val userName = subsc2.fullName
-
-                if (name.isNotEmpty()) {
-                    catHashMap["name"] = name
-                }
-                if (desc.isNotEmpty()) {
-                    catHashMap["description"] = desc
-                }
-                if (img.isNotEmpty()) {
-                    catHashMap["imgName"] = img
-                }
-                if (img2.isNotEmpty()) {
-                    catHashMap["img"] = img2
-                }
-                if (docName!!.isNotEmpty()) {
-                    catHashMap["doctorName"] = docName
-                }
-//            if (userName.isNotEmpty()) {
-//                catHashMap["userName"] = userName
-//            }
-                if (isSubscribe) {
-                    catHashMap["isSubscribe"] = isSubscribe
-                }
-                mFireStore.collection(Constants.SUBSCRIBE)
-                    .document(subsc.id)
-                    .set(catHashMap)
-                    .addOnSuccessListener {
-                        if (isSubsecribe2 == 1) {
-                            holder.binding.btnSubscribe.visibility = View.GONE
-                            holder.binding.btnUnSubscribe.visibility = View.VISIBLE
+                                if (name.isNotEmpty()) {
+                                    catHashMap["name"] = name
+                                }
+                                if (desc.isNotEmpty()) {
+                                    catHashMap["description"] = desc
+                                }
+                                if (img.isNotEmpty()) {
+                                    catHashMap["imgName"] = img
+                                }
+                                if (img2.isNotEmpty()) {
+                                    catHashMap["img"] = img2
+                                }
+                                if (docName!!.isNotEmpty()) {
+                                    catHashMap["doctorName"] = docName
+                                }
+                                if (userName.isNotEmpty()) {
+                                    catHashMap["userName"] = userName
+                                }
+                                if (isSubscribe == 1) {
+                                    catHashMap["isSubscribe"] = isSubscribe
+                                    //R.drawable.ic_fav1
+                                }
+                                mFireStore.collection(Constants.SUBSCRIBE)
+                                    .document(subsc.id)
+                                    .set(catHashMap)
+                                    .addOnSuccessListener {
+                                        holder.binding.btnSubscribe.visibility = View.INVISIBLE
+                                       // holder.binding.btnUnSubscribe.visibility = View.VISIBLE
 //                            holder.binding.btnSubscribe.setImageResource(R.drawable.subscribe2)
-                            Toast.makeText(activity, "تم الأشتراك بنجاح....", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    }
-                    .addOnFailureListener {
+                                        Toast.makeText(
+                                            activity,
+                                            "تم الأشتراك بنجاح....",
+                                            Toast.LENGTH_SHORT
+                                        )
+                                            .show()
+                                        notifyDataSetChanged()
+                                    }
+                                    .addOnFailureListener {
 //                            holder.binding.btnSubscribe.setImageResource(R.drawable.subscribe1)
-                        Toast.makeText(activity, "erorrrrrrrrrrrr", Toast.LENGTH_SHORT).show()
-                    }
+                                        Toast.makeText(
+                                            activity,
+                                            "فشلت عملية الأشتراك ....",
+                                            Toast.LENGTH_SHORT
+                                        )
+                                    }
+
+                            }
+                        }
+
+
+//                holder.binding.btnSubscribe.visibility = View.INVISIBLE
+//                holder.binding.btnUnSubscribe.visibility = View.VISIBLE
+//                notifyDataSetChanged()
+                }
+
+                if (data[position].isSubscribe == R.drawable.subscribe2 || data[position].isSubscribe == 0
+                ) {
+                    holder.binding.btnSubscribe.visibility = (View.INVISIBLE)
+//                holder.binding.fav3.visibility = (View.VISIBLE)
+                    //holder.binding.btnUnSubscribe.visibility = (View.INVISIBLE)
+                    notifyDataSetChanged()
+
+                }
+            }
         }
-        }
-//        else {
-//            holder.binding.btnUnSubscribe.setOnClickListener {
-//                val subsc = data[position]
-//                FirebaseFirestore.getInstance().collection(Constants.SUBSCRIBE).document(subsc.id)
-//                    .delete().addOnSuccessListener {
-//                        data.removeAt(position)
-//                        notifyDataSetChanged()
-//                        holder.binding.btnUnSubscribe.visibility = View.GONE
-//                        holder.binding.btnSubscribe.visibility = View.VISIBLE
-//                        Toast.makeText(activity, "تم الغاء الاشتراك", Toast.LENGTH_SHORT).show()
-//                    }
+
+//        holder.binding.btnUnSubscribe.setOnClickListener {
+//            if (data[position].isSubscribe == R.drawable.subscribe2 || data[position].isSubscribe == 0) {
+//                holder.binding.btnSubscribe.visibility = (View.VISIBLE)
+//                holder.binding.btnUnSubscribe.visibility = (View.INVISIBLE)
+//                notifyDataSetChanged()
 //            }
 //        }
+
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
+
+    private fun getUserDetails() {
+        mFireStore.collection(Constants.USERS)
+            .document(getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    val user = document.toObject(User::class.java)!!
+                    val userName = user.fullName
+                }
+            }
+    }
+
+//
+
+    fun checkUserType() {
+        FirebaseFirestore.getInstance().collection(Constants.USERS)
+            .document(getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+                val user = document.toObject(User::class.java)!!
+                if (user.userType == "Doctor") {
+
+                } else if (user.userType == "Sick") {
+
+                } else {
+                }
+            }
+    }
+
+    fun getCurrentUserID(): String {
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        var currentUserID = ""
+        if (currentUser != null) {
+            currentUserID = currentUser.uid
+        }
+        return currentUserID
+    }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//val item = data[position]
+//
+//if (item.isSubscribe == true) {
+//    holder.binding.btnSubscribe.visibility = View.VISIBLE
+//    holder.binding.btnUnSubscribe.visibility = View.GONE
+//} else {
+//    holder.binding.btnSubscribe.visibility = View.GONE
+//    holder.binding.btnUnSubscribe.visibility = View.VISIBLE
+//}
 
 //var onSubscribeClickListener: AdapterView.OnItemClickListener? = null
 //

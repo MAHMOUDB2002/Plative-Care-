@@ -41,7 +41,7 @@
             android:layout_height="match_parent"
             android:paddingBottom="20dp"
             android:scaleType="centerInside"
-            android:src="@drawable/ic2" />
+            android:src="@drawable/doctors" />
     </LinearLayout>
 
 
