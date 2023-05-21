@@ -3,15 +3,15 @@ package com.example.firbase.model
 import java.util.Date
 
 class ChatMessage {
-    @JvmField
+//    @JvmField
     var senderId: String? = null
-    @JvmField
+//    @JvmField
     var receiverId: String? = null
-    @JvmField
+//    @JvmField
     var message: String? = null
-    @JvmField
+//    @JvmField
     var dateTime: String? = null
-    @JvmField
+//    @JvmField
     var dateObject: Date? = null
     var conversationId: String? = null
     var conversationName: String? = null

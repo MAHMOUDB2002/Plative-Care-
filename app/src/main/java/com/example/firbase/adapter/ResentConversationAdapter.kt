@@ -54,7 +54,7 @@ class ResentConversationAdapter(
                 val user = User()
                 user.id = chatMessage.conversationId.toString()
                 user.fullName = chatMessage.conversationName.toString()
-                user.image = chatMessage.conversationImage.toString()
+                user.image = chatMessage.conversationImage!!
                 conversionListener.onConversionClicked(user)
                 GlideLoader(context).loadUserPicture(
                     user.image,

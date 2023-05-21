@@ -23,7 +23,8 @@ class HomeUserFragment : Fragment() {
     private var _binding: FragmentHomeUserBinding? = null
     private val binding get() = _binding!!
     lateinit var db: FirebaseFirestore
-    lateinit var data:ArrayList<Category>
+    lateinit var data: ArrayList<Category>
+
     //private var progressDialog: ProgressDialog? = null
     private lateinit var progressDialog: Dialog
 
@@ -33,6 +34,7 @@ class HomeUserFragment : Fragment() {
 
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,10 +48,11 @@ class HomeUserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         db = Firebase.firestore
-       // d2=(activity as DashBoardUserActivity)
-        data=ArrayList()
+        // d2=(activity as DashBoardUserActivity)
+        data = ArrayList()
         showDialog("جار التحميل ...")
         getAllCategory()
+
 
 //                val callback = object : OnBackPressedCallback(true) {
 //            override fun handleOnBackPressed() {
@@ -62,36 +65,37 @@ class HomeUserFragment : Fragment() {
     }
 
 
+    fun getAllCategory() {
+        val t1 = Thread(Runnable {
+            val sharedP = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+            val idSubscribeCategory = sharedP.getString("idSubscribeCategory", "0").toString()
+            db.collection("Category")
+                .get()
+                .addOnSuccessListener {
+                    for (document in it) {
+                        val id = document.id
+                        val name = document.getString("name")
+                        val description = document.getString("description")
+                        val img = document.getString("img")
+                        val imgName = document.getString("imgName")
+                        val doctorName = document.getString("doctorName")
 
-    fun getAllCategory(){
-        val sharedP =requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-        val idSubscribeCategory = sharedP.getString("idSubscribeCategory", "0").toString()
-
-        db.collection("Category")
-            .get()
-            .addOnSuccessListener {
-                for (document in it) {
-                    val id =document.id
-                    val name = document.getString("name")
-                    val description = document.getString("description")
-                    val img = document.getString("img")
-                    val imgName = document.getString("imgName")
-                    val doctorName = document.getString("doctorName")
-
-                    val category=Category(id,name!!,img!!,imgName!!,description!!,doctorName!!)
-                    data.add(category)
+                        val category =
+                            Category(id, name!!, img!!, imgName!!, description!!, doctorName!!)
+                        data.add(category)
+                    }
+                    var categoryUserAdapter = CategoryUserAdapter(requireActivity(), data)
+                    binding.rvUser.layoutManager = LinearLayoutManager(requireActivity())
+                    binding.rvUser.adapter = categoryUserAdapter
+                    hideDialog()
                 }
-                var categoryUserAdapter = CategoryUserAdapter(requireActivity(), data)
-                binding.rvUser.layoutManager = LinearLayoutManager(requireActivity())
-                binding.rvUser.adapter = categoryUserAdapter
-                hideDialog()
-            }
-            .addOnFailureListener {
-                Toast.makeText(requireActivity(),it.message, Toast.LENGTH_SHORT).show()
-                hideDialog()
-            }
+                .addOnFailureListener {
+                    Toast.makeText(requireActivity(), it.message, Toast.LENGTH_SHORT).show()
+                    hideDialog()
+                }
+        })
+        t1.start()
     }
-
 
 
     private fun showDialog(text: String) {
@@ -104,6 +108,7 @@ class HomeUserFragment : Fragment() {
         progressDialog!!.show()
 
     }
+
     private fun hideDialog() {
         if (progressDialog.isShowing)
             progressDialog.dismiss()

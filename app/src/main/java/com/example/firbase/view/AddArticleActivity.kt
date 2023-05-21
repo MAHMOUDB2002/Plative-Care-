@@ -103,7 +103,7 @@ class AddArticleActivity : AppCompatActivity() {
         audio: String,
         audioName: String
     ) {
-        showDialog("تحميل المقال ...")
+        showDialog("جاري تحميل المقال ...")
         val name = binding.txtName.text.toString()
         val description = binding.txtDescription.text.toString()
         val sharedP = this.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
@@ -158,7 +158,7 @@ class AddArticleActivity : AppCompatActivity() {
     }
 
     fun uploadImg() {
-        showDialog("تحميل المقال ...")
+        showDialog("جاري تحميل المقال ...")
         val bitmap = (binding.img1.drawable as BitmapDrawable).bitmap
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
@@ -277,20 +277,20 @@ class AddArticleActivity : AppCompatActivity() {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
             imageURI = data!!.data
             if (imageURI != null) {
-                binding.img.setImageResource(R.drawable.done)
+                binding.img.setImageResource(R.drawable.done2)
                 binding.img1.setImageURI(imageURI)
             }
         }
         if (requestCode == PICK_Video_REQUEST && resultCode == Activity.RESULT_OK) {
             videoURI = data!!.data
             if (videoURI != null) {
-                binding.imgVideo.setImageResource(R.drawable.done)
+                binding.imgVideo.setImageResource(R.drawable.done2)
             }
         }
         if (requestCode == PICK_Audio_REQUEST && resultCode == Activity.RESULT_OK) {
             audioURI = data!!.data
             if (audioURI != null) {
-                binding.imgAudio.setImageResource(R.drawable.done)
+                binding.imgAudio.setImageResource(R.drawable.done2)
             }
         }
     }

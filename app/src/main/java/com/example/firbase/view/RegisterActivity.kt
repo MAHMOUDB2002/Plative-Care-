@@ -128,9 +128,17 @@ class RegisterActivity : BaseActivity() {
                     Constants.KEY_USER_ID,
                     uid
                 )
+                editor.putString(
+                    Constants.KEY_NAME,
+                    txtfullName.text.toString()
+                )
+
                 editor.apply()
 //                sharedP.getString(Constants.KEY_USER_ID, uid).toString()
-
+//                preferanceManeger!!.putString(
+//                    Constants.KEY_NAME,
+//                    txtfullName.text.toString()
+//                )
 
             }.addOnFailureListener {
                 hideProgressDialog()
@@ -142,17 +150,12 @@ class RegisterActivity : BaseActivity() {
     fun userRegisterationSuccess() {
         hideProgressDialog()
         showErrorSnackBar("لقد تم تسجيلك بنجاح...", false)
-
+        txtfullName.text.clear()
+        txtBirthOfDate.text.clear()
+        txtPhoneNumbers.text.clear()
+        txtemail.text.clear()
+        txtpassword.text.clear()
+        txtconfirmpassword.text.clear()
     }
-
-    private fun signUp() {
-        val database = FirebaseFirestore.getInstance()
-        val user = HashMap<String, Any?>()
-        database.collection(Constants.KEY_COLLECTION_USERS).add(user)
-            .addOnSuccessListener { decRef: DocumentReference ->
-                preferanceManeger!!.putString(Constants.KEY_USER_ID, decRef.id)
-            }
-    }
-
 
 }

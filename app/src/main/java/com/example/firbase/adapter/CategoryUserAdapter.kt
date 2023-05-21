@@ -44,7 +44,9 @@ class CategoryUserAdapter(var activity: Activity, var data: ArrayList<Category>)
         Picasso.get().load(data[position].img).into(holder.binding.imgCategory)
         holder.binding.tvName.setText(data[position].name)
         holder.binding.tvDescription.setText(data[position].description)
-        holder.binding.doctorName.setText(data[position].doctorName)
+//        holder.binding.doctorName.setText(data[position].doctorName)
+        holder.binding.doctorName.setText(" دكتور : ${data[position].doctorName}")
+
 //        holder.binding.btnSubscribe.setImageResource(data[position].isSubscribe)
 
         holder.binding.cardView.setOnClickListener {
@@ -78,7 +80,7 @@ class CategoryUserAdapter(var activity: Activity, var data: ArrayList<Category>)
                         .addOnSuccessListener { document ->
                             if (document != null) {
                                 val user = document.toObject(User::class.java)!!
-                                val userName =user.fullName
+                                val userName = user.fullName
 //                                val userName = "${user.fullName} تم الأشتراك بواسطة :"
 
                                 if (name.isNotEmpty()) {
@@ -108,7 +110,7 @@ class CategoryUserAdapter(var activity: Activity, var data: ArrayList<Category>)
                                     .set(catHashMap)
                                     .addOnSuccessListener {
                                         holder.binding.btnSubscribe.visibility = View.INVISIBLE
-                                       // holder.binding.btnUnSubscribe.visibility = View.VISIBLE
+                                        holder.binding.btnUnSubscribe.visibility = View.VISIBLE
 //                            holder.binding.btnSubscribe.setImageResource(R.drawable.subscribe2)
                                         Toast.makeText(
                                             activity,
@@ -139,7 +141,7 @@ class CategoryUserAdapter(var activity: Activity, var data: ArrayList<Category>)
                 if (data[position].isSubscribe == R.drawable.subscribe2 || data[position].isSubscribe == 0
                 ) {
                     holder.binding.btnSubscribe.visibility = (View.INVISIBLE)
-//                holder.binding.fav3.visibility = (View.VISIBLE)
+//                    holder.binding.fav3.visibility = (View.VISIBLE)
                     //holder.binding.btnUnSubscribe.visibility = (View.INVISIBLE)
                     notifyDataSetChanged()
 

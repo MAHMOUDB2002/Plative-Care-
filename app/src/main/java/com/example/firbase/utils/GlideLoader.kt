@@ -1,7 +1,6 @@
 package com.example.firbase.utils
 
 import android.content.Context
-import android.net.Uri
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.firbase.R

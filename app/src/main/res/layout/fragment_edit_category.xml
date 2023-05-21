@@ -112,7 +112,7 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/theme_button"
         android:backgroundTint="@color/colorS"
-        android:text="حذف التصنيف!!"
+        android:text="حذف التصنيف"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold" />

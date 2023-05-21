@@ -1,5 +1,6 @@
 package com.example.firbase.fragment_user
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +11,15 @@ import com.example.firbase.view.ChatActivity
 import com.example.firbase.view.UsersActivity
 import com.example.firbase.adapter.ResentConversationAdapter
 import com.example.firbase.databinding.FragmentChatUserBinding
+import com.example.firbase.fragment_admin.ProfileAdminFragment
 import com.example.firbase.listeners.ConversationListeners
 import com.example.firbase.model.ChatMessage
 import com.example.firbase.model.User
 import com.example.firbase.utils.Constants
 import com.example.firbase.utils.GlideLoader
 import com.example.firbase.utils.PreferanceManeger
+import com.example.firbase.view.DashBoardAdminActivity
+import com.example.firbase.view.DashBoardUserActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
@@ -33,6 +37,7 @@ class ChatUserFragment : Fragment() , ConversationListeners {
     private var database: FirebaseFirestore? = null
     private lateinit var mUserDetails: User
     private val mFireStore = FirebaseFirestore.getInstance()
+    lateinit var d: Activity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +56,10 @@ class ChatUserFragment : Fragment() , ConversationListeners {
         getUserDetails()
         setListeners()
         listenConversations()
-
+        d = (activity as DashBoardUserActivity)
+        binding.imageProfile.setOnClickListener {
+            (d as DashBoardAdminActivity).makeCurrentFragment(ProfileUserFragment())
+        }
     }
 
     private fun init() {

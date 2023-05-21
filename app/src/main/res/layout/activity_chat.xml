@@ -38,7 +38,7 @@
         app:tint="@color/white" />
 
     <ImageView
-        android:id="@+id/imageInfo"
+        android:id="@+id/imageInfoo"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
@@ -62,7 +62,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/imageBack"
-        app:layout_constraintEnd_toStartOf="@id/imageInfo"
+        app:layout_constraintEnd_toStartOf="@id/imageInfoo"
         app:layout_constraintStart_toEndOf="@id/imageBack"
         app:layout_constraintTop_toTopOf="@id/imageBack" />
 

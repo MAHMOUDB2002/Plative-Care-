@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.android.synthetic.main.activity_register.txtfullName
 
 class FireStoreClass {
 
@@ -118,7 +119,19 @@ class FireStoreClass {
                 imageFileUri
             )
         )
+//        val sharedPreferences =
+//            activity.getSharedPreferences(Constants.KEY_PREFERENCE_NAME, Context.MODE_PRIVATE)
+//
+//        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+//
+//        editor.putString(
+//            Constants.KEY_IMAGE,
+//            imageFileUri!!.toString()
+//        )
+//        editor.apply()
+
         sRef.putFile(imageFileUri!!)
+
             .addOnSuccessListener { taskSnapshot ->
                 Log.e(
                     "Firebase Image URL",

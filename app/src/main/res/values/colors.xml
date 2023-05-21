@@ -15,7 +15,9 @@
     <color name="login_from_details_light">#C0C0C0</color>
     <color name="login_from_details_medium">#66ffffff</color>
 
-    <color name="cPrimary">#5bbaad</color>
+<!--    <color name="cPrimary">#5bbaad</color>-->
+    <color name="cPrimary">#009688</color>
+
     <color name="cPrimaryDark">#F94C66</color>
     <color name="cAccent">#F94C66</color>
 

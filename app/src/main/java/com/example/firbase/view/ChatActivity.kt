@@ -49,7 +49,7 @@ class ChatActivity : BaseActivity2() {
         setListeners()
         init()
         listenMessages()
-        getUserDetails()
+        //getUserDetails()
 
         if (intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
             //Get the user dwtails from intent as a ParcelableExtra
@@ -177,13 +177,13 @@ class ChatActivity : BaseActivity2() {
                 preferanceManeger!!.getString(Constants.KEY_USER_ID)
             conversion[Constants.KEY_SENDER_IMAGE] =
                 preferanceManeger!!.getString(Constants.KEY_IMAGE)
-            conversion[Constants.KEY_RECEIVER_ID] = receiverUser!!.id
-            conversion[Constants.KEY_RECEIVER_IMAGE] = receiverUser!!.image
+            conversion[Constants.KEY_RECEIVER_ID] = receiverUser.id
+            conversion[Constants.KEY_RECEIVER_IMAGE] = receiverUser.image
             conversion[Constants.KEY_LAST_MESSAGE] =
                 binding!!.inputMessage.text.toString()
             conversion[Constants.KEY_SENDER_NAME] =
                 preferanceManeger!!.getString(Constants.KEY_NAME)
-            conversion[Constants.KEY_RECEIVER_NAME] = receiverUser!!.fullName
+            conversion[Constants.KEY_RECEIVER_NAME] = receiverUser.fullName
             conversion[Constants.KEY_TIMESTAMP] = Date()
             addConversion(conversion)
         }
@@ -205,25 +205,25 @@ class ChatActivity : BaseActivity2() {
         return currentUserID
     }
 
-    private fun getUserDetails() {
-        mFireStore.collection(Constants.USERS)
-            .document(getCurrentUserID())
-            .get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    val user = document.toObject(User::class.java)!!
-                    getImage(user)
-                }
-            }
-    }
+//    private fun getUserDetails() {
+//        mFireStore.collection(Constants.USERS)
+//            .document(getCurrentUserID())
+//            .get()
+//            .addOnSuccessListener { document ->
+//                if (document != null) {
+//                    val user = document.toObject(User::class.java)!!
+//                    getImage(user)
+//                }
+//            }
+//    }
 
-    private  fun  getImage(user:User){
-    mUserDetails = user
-    GlideLoader(this).loadUserPicture(
-        user.image,
-        binding!!.imageInfo
-    )
-    }
+//    private  fun  getImage(user:User){
+//    mUserDetails = user
+////    GlideLoader(this).loadUserPicture(
+////        user.image,
+////        binding!!.imageInfo
+////    )
+//    }
 
     private fun loadReceiverDetails() {
 

@@ -41,7 +41,8 @@ class UserAdapter(
         fun setUserData(user: User) {
             binding.textName.text = user.fullName
             binding.textEmail.text = user.email
-//
+            binding.textDoctorSpescialize.text = user.doctorSpecialization
+
 //            binding.imageProfile.setImageBitmap(user.image?.let {
 //                getUserImage(it) })
 

@@ -1,23 +1,20 @@
 package com.example.firbase.adapter
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.firbase.databinding.ItemContainerRecevedMessageBinding
 import com.example.firbase.databinding.ItemContanerSendMessageBinding
 import com.example.firbase.model.ChatMessage
-import com.example.firbase.model.User
 import com.example.firbase.utils.GlideLoader
-import com.squareup.picasso.Picasso
 
 
 class ChatAdapter(
     val context: Context,
     private val chatMessages: List<ChatMessage>,
     //private val receiverProfileImage: Bitmap,
-//    private val receiverProfileImage: Unit,
+//    private val receiverProfileImage: Any,
 
     private val senderId: String
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -48,7 +45,6 @@ class ChatAdapter(
 
             (holder as ReceivedMessageViewHolder).setData(
                 chatMessages[position],
-
                 //receiverProfileImage
             )
         }
@@ -80,18 +76,21 @@ class ChatAdapter(
         RecyclerView.ViewHolder(
             binding.root
         ) {
-        fun setData(chatMessage: ChatMessage
-                    //, receiverProfileImage: String?
-                    //,user: User
+        fun setData(
+            chatMessage: ChatMessage
+            //, receiverProfileImage: String?
+            //,user: User
         ) {
             binding.textMessage.text = chatMessage.message
             binding.textDateTime.text = chatMessage.dateTime
 //            binding.imageProfile.setImageBitmap(receiverProfileImage)
             //  Picasso.get().load(chatMessages[position].img).into(binding.imageProfile)
-            GlideLoader(context).loadUserPicture(
-                chatMessage.conversationImage!!,
-                binding.imageProfile
-            )
+
+//            GlideLoader(context).loadUserPicture(
+//                chatMessage.conversationImage.toString(),
+//                binding.imageProfile
+//            )
+
 
         }
     }

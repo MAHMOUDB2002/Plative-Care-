@@ -34,7 +34,7 @@ class SearchAdapter(var activity: Activity, var data: ArrayList<Category>) :
 //                holder.binding.tvName.setText(it.getString("name"))
                 holder.binding.tvName.setText(data[position].name)
                 holder.binding.tvDescription.setText(data[position].description)
-                holder.binding.tvDoctorName.setText(data[position].doctorName)
+                holder.binding.tvDoctorName.setText(" دكتور : ${data[position].doctorName}")
             }
         holder.binding.cardView.setOnClickListener {
             val sharedP=activity.getSharedPreferences("MyPref", Context.MODE_PRIVATE)

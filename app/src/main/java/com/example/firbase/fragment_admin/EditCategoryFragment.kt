@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import com.example.firbase.R
 import com.example.firbase.view.DashBoardAdminActivity
 import com.example.firbase.databinding.FragmentEditCategoryBinding
@@ -59,6 +60,16 @@ EditCategoryFragment : Fragment(), java.io.Serializable {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         d = (activity as DashBoardAdminActivity)
+                val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+//                findNavController().navigate(R.id.action_fourthFragment_to_secondFragment)
+             //   (d as DashBoardAdminActivity).makeCurrentFragment(HomeAdminFragment())
+//                val i = Intent(requireContext(),DashBoardAdminActivity::class.java)
+//                startActivity(i)
+//                d.finish()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         showDialog("حفظ التغيرات  ...")
         db = Firebase.firestore
         val storage = Firebase.storage
@@ -69,8 +80,8 @@ EditCategoryFragment : Fragment(), java.io.Serializable {
         binding.btnDelete.setOnClickListener {
             val dialog = AlertDialog.Builder(activity)
             dialog.setTitle("حذف")
-            dialog.setMessage("do you want delete this Caegory!")
-            dialog.setPositiveButton("yes") { _, _ ->
+            dialog.setMessage("هل تريد حذف هذا المرض !؟")
+            dialog.setPositiveButton("نعم") { _, _ ->
                 db.collection("Category").document(id)
                     .delete()
                     .addOnSuccessListener {
@@ -84,7 +95,7 @@ EditCategoryFragment : Fragment(), java.io.Serializable {
 
                     }
             }
-            dialog.setNegativeButton("No") { dis, _ ->
+            dialog.setNegativeButton("لا") { dis, _ ->
                 dis.dismiss()
             }
             dialog.create().show()

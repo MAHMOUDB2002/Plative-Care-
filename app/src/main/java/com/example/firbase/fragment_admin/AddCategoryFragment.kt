@@ -66,7 +66,7 @@ class AddCategoryFragment : Fragment() {
         }
         getUserDetails()
         binding.btnAdd.setOnClickListener {
-            showDialog("تحميل التصنيف ...")
+            showDialog("جاري تحميل التصنيف ...")
             val name = binding.txtName.text.toString()
             val description = binding.txtDescription.text.toString()
             val docName = binding.txtDoctorName.text.toString()

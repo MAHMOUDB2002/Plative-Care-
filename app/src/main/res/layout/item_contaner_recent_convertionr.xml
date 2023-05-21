@@ -29,31 +29,31 @@
         android:id="@+id/textName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_marginStart="18dp"
         android:ellipsize="end"
+        android:layoutDirection="rtl"
         android:maxLines="1"
         android:textColor="@color/Primary_text"
         android:textSize="20sp"
-        android:layout_alignParentRight="true"
-        android:layoutDirection="rtl"
         app:layout_constraintBottom_toTopOf="@id/viewSupporter"
-        app:layout_constraintEnd_toEndOf="@+id/textlastMsTime"
         app:layout_constraintStart_toEndOf="@id/imageProfile" />
 
     <TextView
         android:id="@+id/textRecentMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_marginStart="18dp"
         android:ellipsize="end"
-        android:layout_alignParentLeft="true"
         android:layoutDirection="rtl"
         android:maxLines="1"
         android:textColor="@color/Secondary_text"
         android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="@+id/textlastMsTime"
         app:layout_constraintStart_toEndOf="@id/imageProfile"
         app:layout_constraintTop_toBottomOf="@id/viewSupporter" />
+
+
 
 
     <TextView

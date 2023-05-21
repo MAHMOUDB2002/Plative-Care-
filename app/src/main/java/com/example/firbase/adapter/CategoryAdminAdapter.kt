@@ -13,8 +13,8 @@ import com.example.firbase.model.Category
 import com.squareup.picasso.Picasso
 import java.io.Serializable
 
-class CategoryAdapter(var activity: Activity, var data: ArrayList<Category>):
-    RecyclerView.Adapter<CategoryAdapter.MyViewHolder>(), Serializable {
+class CategoryAdminAdapter(var activity: Activity, var data: ArrayList<Category>):
+    RecyclerView.Adapter<CategoryAdminAdapter.MyViewHolder>(), Serializable {
     class MyViewHolder(var binding: LayoutViewAdminBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -28,7 +28,7 @@ class CategoryAdapter(var activity: Activity, var data: ArrayList<Category>):
         Picasso.get().load(data[position].img).into(holder.binding.imgCategory)
         holder.binding.tvName.setText(data[position].name)
         holder.binding.tvDescription.setText(data[position].description)
-        holder.binding.tvDoctorName.setText(data[position].doctorName)
+        holder.binding.tvDoctorName.setText(" دكتور : ${data[position].doctorName}")
 
         holder.binding.btnEdit.setOnClickListener {
             val sharedP=activity.getSharedPreferences("MyPref", Context.MODE_PRIVATE)

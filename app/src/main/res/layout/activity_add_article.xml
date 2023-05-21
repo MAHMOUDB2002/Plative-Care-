@@ -36,7 +36,7 @@
             android:ems="10"
             android:background="@drawable/edit_text_background"
             android:padding="10dp"
-            android:hint="وصف دقيق عن المرض"
+            android:hint="وصف دقيق للحماية من المرض"
             android:inputType="textPersonName"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

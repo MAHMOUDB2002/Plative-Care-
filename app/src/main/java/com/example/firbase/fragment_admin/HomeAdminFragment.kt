@@ -8,11 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firbase.R
 import com.example.firbase.view.DashBoardAdminActivity
-import com.example.firbase.adapter.CategoryAdapter
+import com.example.firbase.adapter.CategoryAdminAdapter
 import com.example.firbase.databinding.FragmentHomeAdminBinding
 import com.example.firbase.model.Category
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,15 +24,17 @@ class HomeAdminFragment : Fragment() {
     private var _binding: FragmentHomeAdminBinding? = null
     private val binding get() = _binding!!
     lateinit var db: FirebaseFirestore
-    lateinit var data:ArrayList<Category>
+    lateinit var data: ArrayList<Category>
+
     //private var progressDialog: ProgressDialog? = null
-    lateinit var d : Activity
+    lateinit var d: Activity
     private lateinit var progressDialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,8 +46,8 @@ class HomeAdminFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         db = Firebase.firestore
-        d=(activity as DashBoardAdminActivity)
-        data=ArrayList()
+        d = (activity as DashBoardAdminActivity)
+        data = ArrayList()
         showDialog("جار التحميل ...")
         getAllCategory()
         binding.btnAdd.setOnClickListener {
@@ -63,31 +64,34 @@ class HomeAdminFragment : Fragment() {
     }
 
 
+    fun getAllCategory() {
+        val t1 = Thread(Runnable {
+            db.collection("Category")
+                .get()
+                .addOnSuccessListener {
+                    for (document in it) {
+                        val id = document.id
+                        val name = document.getString("name")
+                        val description = document.getString("description")
+                        val doctorName = document.getString("doctorName")
+                        val img = document.getString("img")
+                        val imgName = document.getString("imgName")
 
-    fun getAllCategory(){
-        db.collection("Category")
-            .get()
-            .addOnSuccessListener {
-                for (document in it) {
-                    val id =document.id
-                    val name = document.getString("name")
-                    val description = document.getString("description")
-                    val doctorName = document.getString("doctorName")
-                    val img = document.getString("img")
-                    val imgName = document.getString("imgName")
-
-                    val category= Category(id,name!!,img!!,imgName!!,description!!,doctorName!!,)
-                    data.add(category)
+                        val category =
+                            Category(id, name!!, img!!, imgName!!, description!!, doctorName!!)
+                        data.add(category)
+                    }
+                    var categoryAdapter = CategoryAdminAdapter(d, data)
+                    binding.rv.layoutManager = LinearLayoutManager(d)
+                    binding.rv.adapter = categoryAdapter
+                    hideDialog()
                 }
-                var categoryAdapter = CategoryAdapter(d, data)
-                binding.rv.layoutManager = LinearLayoutManager(d)
-                binding.rv.adapter = categoryAdapter
-                hideDialog()
-            }
-            .addOnFailureListener {
-                Toast.makeText(d,it.message, Toast.LENGTH_SHORT).show()
-                hideDialog()
-            }
+                .addOnFailureListener {
+                    Toast.makeText(d, it.message, Toast.LENGTH_SHORT).show()
+                    hideDialog()
+                }
+        })
+        t1.start()
     }
 
 
@@ -101,6 +105,7 @@ class HomeAdminFragment : Fragment() {
         progressDialog!!.show()
 
     }
+
     private fun hideDialog() {
         if (progressDialog.isShowing)
             progressDialog.dismiss()

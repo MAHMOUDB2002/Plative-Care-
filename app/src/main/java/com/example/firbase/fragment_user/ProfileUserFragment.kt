@@ -1,8 +1,6 @@
 package com.example.firbase.fragment_user
 
-import android.app.Activity
 import android.app.Dialog
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -11,10 +9,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation.findNavController
 import com.example.firbase.view.LoginActivity
 import com.example.firbase.R
 import com.example.firbase.view.UserProfileActivity
@@ -22,8 +16,6 @@ import com.example.firbase.databinding.FragmentProfileUserBinding
 import com.example.firbase.model.User
 import com.example.firbase.utils.Constants
 import com.example.firbase.utils.GlideLoader
-import com.example.firbase.view.DashBoardAdminActivity
-import com.example.firbase.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.dialog_progress.*
@@ -96,14 +88,14 @@ class ProfileUserFragment : Fragment()
                 if (document != null) {
                     val user = document.toObject(User::class.java)!!
 
-                    val sharedPreferences = requireActivity().getSharedPreferences(
-                        Constants.MYSHOP_PREFERENCES,
-                        Context.MODE_PRIVATE
-                    )
-
-                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                    editor.putString(Constants.LOGGED_IN_USERNAME, user.fullName)
-                    editor.apply()
+//                    val sharedPreferences = requireActivity().getSharedPreferences(
+//                        Constants.MYSHOP_PREFERENCES,
+//                        Context.MODE_PRIVATE
+//                    )
+//
+//                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
+//                    editor.putString(Constants.LOGGED_IN_USERNAME, user.fullName)
+//                    editor.apply()
                     userDetailsSuccess(user)
                 }
             }

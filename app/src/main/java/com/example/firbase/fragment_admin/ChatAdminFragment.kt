@@ -1,5 +1,6 @@
 package com.example.firbase.fragment_admin
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import com.example.firbase.model.User
 import com.example.firbase.utils.Constants
 import com.example.firbase.utils.GlideLoader
 import com.example.firbase.utils.PreferanceManeger
+import com.example.firbase.view.DashBoardAdminActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
@@ -33,6 +35,9 @@ class ChatAdminFragment : Fragment(), ConversationListeners {
     private var database: FirebaseFirestore? = null
     private lateinit var mUserDetails: User
     private val mFireStore = FirebaseFirestore.getInstance()
+    lateinit var d: Activity
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,9 +56,11 @@ class ChatAdminFragment : Fragment(), ConversationListeners {
         getUserDetails()
         setListeners()
         listenConversations()
-
+        d = (activity as DashBoardAdminActivity)
+        binding.imageProfile.setOnClickListener {
+            (d as DashBoardAdminActivity).makeCurrentFragment(ProfileAdminFragment())
+        }
     }
-
 
 
     private fun init() {
@@ -91,6 +98,7 @@ class ChatAdminFragment : Fragment(), ConversationListeners {
                 preferanceManeger!!.getString(Constants.KEY_USER_ID)
             ).addSnapshotListener(eventListener)
     }
+
     fun getCurrentUserID(): String {
 
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -100,6 +108,7 @@ class ChatAdminFragment : Fragment(), ConversationListeners {
         }
         return currentUserID
     }
+
     private fun getUserDetails() {
         mFireStore.collection(Constants.USERS)
             .document(getCurrentUserID())

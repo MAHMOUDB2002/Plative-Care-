@@ -13,7 +13,7 @@ class User(
  var image : String = "",
  val profileCompleted : Int = 0,
  val address : String = "",
- val doctorSpecialization : String = "",
+ var doctorSpecialization : String = "",
  val gender : String = "",
  val userType : String = "",
 

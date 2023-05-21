@@ -48,30 +48,13 @@ class SplachActivity : AppCompatActivity() {
     private fun checkUser() {
 
         val firebaseUser = firebaseAuth.currentUser
-        if (firebaseUser == null) {
-            val i = Intent(this, WelcomeActivity::class.java)
-            startActivity(i)
-            finish()
-
-        } else {
+        if (firebaseUser != null) {
             FirebaseFirestore.getInstance().collection(Constants.USERS)
                 .document(getCurrentUserID())
                 .get()
                 .addOnSuccessListener { document ->
-
                     val user = document.toObject(User::class.java)!!
 
-                    val sharedPreferences = this.getSharedPreferences(
-                        Constants.MYSHOP_PREFERENCES,
-                        Context.MODE_PRIVATE
-                    )
-
-                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                    editor.putString(
-                        Constants.LOGGED_IN_USERNAME,
-                        "${user.fullName}"
-                    )
-                    editor.apply()
                     if (user.userType == "Doctor") {
                         startActivity(Intent(this@SplachActivity, DashBoardAdminActivity::class.java))
                         finish()
@@ -87,29 +70,40 @@ class SplachActivity : AppCompatActivity() {
                         )
                         finish()
                     }
-
-
-
                 }
+
+        } else {
+            val i = Intent(this, WelcomeActivity::class.java)
+            startActivity(i)
+            finish()
+
         }
     }
 
-    fun checkConn() {
-        //For Connection
-        val connManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val wifiConn = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
-        val mobileDataConn = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
-        if (wifiConn!!.isConnectedOrConnecting) {
-            Toast.makeText(this, "Wifi Conected", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(this, "Wifi Disconected", Toast.LENGTH_SHORT).show()
-        }
-        if (mobileDataConn!!.isConnectedOrConnecting) {
-            Toast.makeText(this, "mobileData Conected", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(this, "mobileData Disconected", Toast.LENGTH_SHORT).show()
-        }
-    }
+
+
+
+
+
+
+
+
+//    fun checkConn() {
+//        //For Connection
+//        val connManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+//        val wifiConn = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+//        val mobileDataConn = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+//        if (wifiConn!!.isConnectedOrConnecting) {
+//            Toast.makeText(this, "Wifi Conected", Toast.LENGTH_SHORT).show()
+//        } else {
+//            Toast.makeText(this, "Wifi Disconected", Toast.LENGTH_SHORT).show()
+//        }
+//        if (mobileDataConn!!.isConnectedOrConnecting) {
+//            Toast.makeText(this, "mobileData Conected", Toast.LENGTH_SHORT).show()
+//        } else {
+//            Toast.makeText(this, "mobileData Disconected", Toast.LENGTH_SHORT).show()
+//        }
+//    }
 }
 
 

@@ -61,6 +61,8 @@ class UsersActivity : BaseActivity2(), UserListeners {
                             user.fullName = queryDocumentSnapshot.getString(Constants.KEY_NAME).toString()
                             user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL).toString()
                             user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE).toString()
+                            user.doctorSpecialization = queryDocumentSnapshot.getString(Constants.DOCTORJOB).toString()
+
 //                            user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN)
                             user.id = queryDocumentSnapshot.id
                             users.add(user)

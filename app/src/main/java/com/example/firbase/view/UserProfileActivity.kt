@@ -17,10 +17,10 @@ import com.example.firbase.model.User
 import com.example.firbase.utils.BaseActivity
 import com.example.firbase.utils.Constants
 import com.example.firbase.utils.GlideLoader
+import com.example.firbase.utils.PreferanceManeger
 import com.example.shop.firestore.FireStoreClass
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_register.txtBirthOfDate
 import kotlinx.android.synthetic.main.activity_user_profile.*
 import java.io.IOException
 import java.util.Calendar
@@ -31,6 +31,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private var mSelectedImageFileUri: Uri? = null
     private var mUserProfileImageUri: String = ""
     private val mFireStore = FirebaseFirestore.getInstance()
+    private var preferanceManeger: PreferanceManeger? = null
+
     var job = 99
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +40,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_user_profile)
         supportActionBar?.hide()
 
+        preferanceManeger = PreferanceManeger(applicationContext)
         if (intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
             //Get the user dwtails from intent as a ParcelableExtra
             mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
@@ -376,6 +379,16 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     fun imageUploadSuccess(imageURL: String) {
         mUserProfileImageUri = imageURL
         updateUserProfileDetails()
+        val sharedPreferences =
+            this.getSharedPreferences(Constants.KEY_PREFERENCE_NAME, Context.MODE_PRIVATE)
+
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+
+        editor.putString(
+            Constants.KEY_IMAGE,
+            mUserProfileImageUri
+        )
+        editor.apply()
 
     }
 
